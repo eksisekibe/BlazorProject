@@ -4,4 +4,15 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorProject.Common\BlazorProject.Common.csproj" />
+    <ProjectReference Include="..\BlazorProject.DataAccess\BlazorProject.DataAccess.csproj" />
+    <ProjectReference Include="..\BlazorProject.Models\BlazorProject.Models.csproj" />
+  </ItemGroup>
+
 </Project>
