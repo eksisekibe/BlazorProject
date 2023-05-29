@@ -1,0 +1,57 @@
+﻿@page "/bindprops"
+
+@*<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+*@
+Course => @course.CourseName
+<br />
+Price : @course.Price
+<br />
+@*
+    Modeldeki price değeri ile input içine yazdığım @bind-value="@course.Price" değeri aynıdır ve karşılıklı data aktarımı için izin vermiş oluyoruz.
+    Anlık değeri algılayabilmek için event değerini seçiyoruz ve anlık değişimleri takip edebilşmek için içerisine oninput değerini yazıyoruz. 
+    oninput değeri bizim javascriptin oninput değerine bağlıyor. Değişiklik olayı her başlatıldığında bağlı bulunduğu objeyi de değiştiriyor.
+*@
+
+<input type="number" @bind-value="@course.Price" @bind-value:event="oninput"/>
+<br />
+<input type="checkbox" @bind-value="@course.IsActive" checked="@(course.IsActive?"checked":null)"/> Is Active
+<br />
+<span> This Course is @(course.IsActive?"Active":"In Active")</span>
+
+<select @bind="defaultSelectValue">
+    @foreach(var drop in drops)
+    {
+        <option value="@drop.Name">@drop.Name</option>
+    }
+</select>
+<br />
+<span>Selected Course is name : @defaultSelectValue</span>
+
+
+
+@code
+{
+    string defaultSelectValue = "Microservice";
+
+    List<DropdownProps> drops = new List<DropdownProps>()
+    {
+        new DropdownProps{Id=1,Name="E-Commerce", Value="30"},
+        new DropdownProps{Id=2,Name="Microservice", Value="40"},
+        new DropdownProps{Id=3,Name="Social Media", Value="50"},
+        new DropdownProps{Id=4,Name="Dependency Injection", Value="60"}
+    };
+
+
+
+    Models.CourseTraning course = new Models.CourseTraning()
+        {
+            Id = 1,
+            CourseName = "Blazor e-commerce",
+            IsActive = true,
+            Price = 20
+    };
+}
