@@ -1,0 +1,16 @@
+﻿@*
+    Herbir page bir component'tir. Ama her component bir page değildir.
+*@
+@if (IsAdmin)
+{
+    <input type="button" class="btn btn-danger" value="Delete" />
+    <input type="button" class="btn btn-warning" value="Edit" />
+    <input type="button" class="btn btn-success" value="Create" />
+}
+
+
+@code
+{
+    [Parameter]
+    public bool IsAdmin { get; set; }
+}
