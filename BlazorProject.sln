@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorProject", "BlazorProject\BlazorProject.csproj", "{7B408D54-1479-434D-9DE2-0260F3E941CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorProject", "BlazorProject\BlazorProject.csproj", "{7B408D54-1479-434D-9DE2-0260F3E941CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorProject.DataAccess", "BlazorProject.DataAccess\BlazorProject.DataAccess.csproj", "{C8D5CD25-D7DC-42F4-878D-8A712C49701B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorProject.DataAccess", "BlazorProject.DataAccess\BlazorProject.DataAccess.csproj", "{C8D5CD25-D7DC-42F4-878D-8A712C49701B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorProject.Common", "BlazorProject.Common\BlazorProject.Common.csproj", "{EC6D19CE-FE70-41C5-B454-B02E3E4D4C45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorProject.Common", "BlazorProject.Common\BlazorProject.Common.csproj", "{EC6D19CE-FE70-41C5-B454-B02E3E4D4C45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorProject.Models", "BlazorProject.Models\BlazorProject.Models.csproj", "{DCF0D385-A6FE-4D95-89AC-7AE690A1BCE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorProject.Models", "BlazorProject.Models\BlazorProject.Models.csproj", "{DCF0D385-A6FE-4D95-89AC-7AE690A1BCE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorProject.Business", "BlazorProject.Business\BlazorProject.Business.csproj", "{9B1CA8E2-488E-4F46-A7DF-87BE7A7326D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorProject.Business", "BlazorProject.Business\BlazorProject.Business.csproj", "{9B1CA8E2-488E-4F46-A7DF-87BE7A7326D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

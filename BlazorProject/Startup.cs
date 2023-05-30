@@ -1,4 +1,6 @@
 using BlazorProject.Areas.Identity;
+using BlazorProject.Business.Contracts;
+using BlazorProject.Business.Implementaion;
 using BlazorProject.Data;
 using BlazorProject.DataAccess.Data;
 using Microsoft.AspNetCore.Builder;
@@ -35,6 +37,7 @@ namespace BlazorProject
             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             //    .AddEntityFrameworkStores<BlazorContext>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
