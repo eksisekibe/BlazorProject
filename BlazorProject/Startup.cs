@@ -37,6 +37,10 @@ namespace BlazorProject
                     Configuration.GetConnectionString("DefaultConnection")));
             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             //    .AddEntityFrameworkStores<BlazorContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<BlazorContext>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI();
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<IFileUpload, FileUpload>();
@@ -65,6 +69,7 @@ namespace BlazorProject
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            // Bu Authentication iþlemlerinde önce olmalý. Yoksa sayfamýzý çaðýrmamýza izin vermez.
             app.UseRouting();
 
             app.UseAuthentication();
@@ -72,6 +77,7 @@ namespace BlazorProject
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllers();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");

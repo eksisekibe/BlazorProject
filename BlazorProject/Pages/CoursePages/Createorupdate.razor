@@ -5,6 +5,8 @@
 @using BlazorProject.Business.Contracts
 @using BlazorProject.Service
 
+@*@attribute [Authorize]*@
+
 @inject ICourseRepository _courseRepository
 @inject NavigationManager _navigationManager
 @inject IJSRuntime _jsRuntime
@@ -59,12 +61,24 @@
 
 @code
 {
+    [CascadingParameter]
+    public Task<AuthenticationState> State { get; set; }
+
     [Parameter]
     public int? Id { get; set; }
+
     private string Title { get; set; }
     private CourseDto courseModel { get; set; } = new CourseDto();
     protected override async Task OnInitializedAsync()
     {
+        var authState = await State;
+        if (!authState.User.Identity.IsAuthenticated)
+        {
+            var url = new Uri(_navigationManager.Uri);
+            _navigationManager.NavigateTo($"/Identity/account/login?returnUrl={url.LocalPath}");
+        }
+
+
         if (Id != null)
         {
             Title = "Update";
