@@ -3,6 +3,7 @@ using BlazorProject.Business.Contracts;
 using BlazorProject.Business.Implementaion;
 using BlazorProject.Data;
 using BlazorProject.DataAccess.Data;
+using BlazorProject.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -38,6 +39,7 @@ namespace BlazorProject
             //    .AddEntityFrameworkStores<BlazorContext>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<IFileUpload, FileUpload>();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();

@@ -3,10 +3,12 @@
 
 @using BlazorProject.Models
 @using BlazorProject.Business.Contracts
+@using BlazorProject.Service
 
 @inject ICourseRepository _courseRepository
 @inject NavigationManager _navigationManager
 @inject IJSRuntime _jsRuntime
+@inject IFileUpload _fileUpload
 
 <h4>Course Added</h4>
 <div class="col-md-12">
@@ -39,9 +41,13 @@
                     <InputText @bind-Value="courseModel.SubTitle" class="form-control"></InputText>
                     <ValidationMessage For="()=>courseModel.SubTitle"></ValidationMessage>
                 </div>
-                <div>
-                    <InputFile OnChange="AddPicture"></InputFile>
-                </div>
+                @if (Id > 0)
+                {
+                    <div class="form-group">
+                        <InputFile OnChange="AddPicture"></InputFile>
+                    </div>
+                }
+
                 <div class="form-group">
                     <button class="btn btn-success">Course Add</button>
                     <NavLink href="courselist" class="btn btn-danger">Back To Course List</NavLink>
@@ -98,8 +104,17 @@
         }
 
     }
-    private async Task AddPicture()
+    private async Task AddPicture(InputFileChangeEventArgs file)
     {
-        
+        var fileName = file.File;
+        if (fileName != null)
+        {
+            var data = await _fileUpload.UploadFile(fileName);
+            var updateCourse = await _courseRepository.UpdateCourseImage((int)Id, data);
+            if (updateCourse.IsSucCess)
+                await _jsRuntime.ToastrSuccess(updateCourse.Message);
+            else
+                await _jsRuntime.ToastrError(updateCourse.Message);
+        }
     }
 }
