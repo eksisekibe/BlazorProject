@@ -1,9 +1,12 @@
 ﻿@page "/course/createorupdate"
+@page "/course/edit/{Id:int}"
+
 @using BlazorProject.Models
 @using BlazorProject.Business.Contracts
 
 @inject ICourseRepository _courseRepository
 @inject NavigationManager _navigationManager
+@inject IJSRuntime _jsRuntime
 
 <h4>Course Added</h4>
 <div class="col-md-12">
@@ -36,24 +39,67 @@
                     <InputText @bind-Value="courseModel.SubTitle" class="form-control"></InputText>
                     <ValidationMessage For="()=>courseModel.SubTitle"></ValidationMessage>
                 </div>
+                <div>
+                    <InputFile OnChange="AddPicture"></InputFile>
+                </div>
                 <div class="form-group">
-                   <button class="btn btn-success">Course Add</button>
-                   <NavLink href="courselist" class="btn btn-danger">Back To Course List</NavLink>
+                    <button class="btn btn-success">Course Add</button>
+                    <NavLink href="courselist" class="btn btn-danger">Back To Course List</NavLink>
                 </div>
             </EditForm>
         </div>
     </div>
 </div>
 
-@code 
+@code
 {
+    [Parameter]
+    public int? Id { get; set; }
+    private string Title { get; set; }
     private CourseDto courseModel { get; set; } = new CourseDto();
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id != null)
+        {
+            Title = "Update";
+            var data = await _courseRepository.GetCourse((int)Id);
+            courseModel = data.Data;
+        }
+        else
+        {
+            //create
+        }
+    }
     private async Task CourseCreateOrUpdate()
     {
-        var created = await _courseRepository.CreateCourse(courseModel);
-        if(created.IsSucCess)
-            _navigationManager.NavigateTo("courselist");
-        //else
-        //    _navigationManager.NavigateTo("courselist");
+        try
+        {
+            if (Id != null)
+            {
+                var updateData = await _courseRepository.UpdateCourse((int)Id, courseModel);
+                if (updateData.IsSucCess)
+                    await _jsRuntime.ToastrSuccess(updateData.Message);
+                else
+                    await _jsRuntime.ToastrError(updateData.Message);
+
+            }
+            else
+            {
+                var created = await _courseRepository.CreateCourse(courseModel);
+                if (created.IsSucCess)
+                    await _jsRuntime.ToastrSuccess(created.Message);
+                else
+                    await _jsRuntime.ToastrError(created.Message);
+            }
+        }
+        catch (Exception ex)
+        {
+            await _jsRuntime.ToastrError(ex.Message.ToString());
+        }
+
+    }
+    private async Task AddPicture()
+    {
+        
     }
 }

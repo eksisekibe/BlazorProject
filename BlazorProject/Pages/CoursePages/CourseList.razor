@@ -23,6 +23,7 @@
                     <th scope="col">Description</th>
                     <th scope="col">Title</th>
                     <th scope="col">Is Active</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -35,7 +36,7 @@
                             <td>@course.CoursePrice</td>
                             <td>@course.Description</td>
                             <td>@course.Title</td>
-                            @if(course.IsActive)
+                            @if (course.IsActive == true)
                             {
                                 <td>
                                     Active
@@ -47,6 +48,9 @@
                                     Pasif
                                 </td>
                             }
+                            <td>
+                                <NavLink href="@($"/course/edit/{course.Id}")" class="btn btn-primary">Edit</NavLink>
+                            </td>
                         </tr>
                     }
                 }
