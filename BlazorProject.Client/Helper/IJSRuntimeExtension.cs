@@ -1,14 +1,13 @@
 ﻿using Microsoft.JSInterop;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-namespace BlazorProject.Helper
+namespace BlazorProject.Client.Helper
 {
     public static class IJSRuntimeExtension
     {
-        public static async ValueTask ToastrSuccess(this IJSRuntime jsRuntime, string message)
+        public static async ValueTask ToastrSuccess(this IJSRuntime jsRuntime,string message)
         {
-            await jsRuntime.InvokeVoidAsync("DisplayToastr", "success", message);
+            await jsRuntime.InvokeVoidAsync("ShowToastr", "success", message);
         }
 
         public static async ValueTask ToastrError(this IJSRuntime jsRuntime, string message)

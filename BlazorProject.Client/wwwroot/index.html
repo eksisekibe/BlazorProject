@@ -10,10 +10,17 @@
     <link href="css/app.css" rel="stylesheet" />
     <link href="BlazorProject.Client.styles.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
-    <div id="app">Loading...</div>
+
+    <!-- loading yaparken çıkan icon -->
+    <div id="app">
+        <div style="position: fixed; top: 50%; left: 50%;margin-top:-50px;margin-left:-100px;">
+            <img src="https://media.giphy.com/media/xTk9ZvMnbIiIew7IpW/giphy.gif" />
+        </div>
+    </div>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.
@@ -24,8 +31,9 @@
             integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
             crossorigin="anonymous">
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>s
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="~/js/common.js"></script>
+    <script src="js/StripePayment.js"></script>
     <script src="_framework/blazor.webassembly.js"></script>
 </body>
 

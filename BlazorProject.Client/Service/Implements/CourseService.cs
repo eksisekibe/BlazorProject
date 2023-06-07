@@ -28,7 +28,7 @@ namespace BlazorProject.Client.Service.Implements
 
         public async Task<Result<CourseDto>> GetCourse(int courseId)
         {
-            var response = await _httpClient.GetAsync($"api/Course/"+courseId);
+            var response = await _httpClient.GetAsync($"api/Course/" + courseId);
             var content = await response.Content.ReadAsStringAsync();
             var courses = JsonConvert.DeserializeObject<CourseDto>(content);
             return new Result<CourseDto>(true, ResultConstant.RecordFound, courses);

@@ -36,7 +36,8 @@
         public const string Role_Employee = "Employee";
 
         //-----------------------------------------------------------------------//
-        public const string BaseApiUrl = "https://localhost:5001/";
+        public const string BaseApiUrl = "http://localhost:44388/";
+        public const string ImageServerUrl = "https://localhost:5001/";
 
         //-----------------------------------------------------------------------//
         public const string Status_Pending = "Pending";

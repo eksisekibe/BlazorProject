@@ -1,11 +1,7 @@
 ﻿@page "/courseList"
-@using BlazorProject.Client.Service.Contracts;
-@using BlazorProject.Models;
 
 @inject NavigationManager _navigationManager
 @inject ICourseService _courseService
-
-<br />
 
 
 <div class="row">
@@ -38,8 +34,8 @@
                         <p class="card-text">Total Course Count: @course.TotalCount </p>
                     </div>
                     <div class="card-body">
-                        <button class="btn btn-warning" @onclick="()=> HandleGoDetail(course.Id)">Detail</button>
-                        <button class="btn btn-primary" @onclick="()=> HandleGoCheckout(course.Id)">Buy Course</button>
+                        <button class="btn btn-warning">Detail</button>
+                        <button class="btn btn-primary">Buy Course</button>
                     </div>
                     <div class="card-footer">
                         Create Date : @course.CreatedDate
@@ -72,7 +68,6 @@
             ErrorMessage = ex.Message.ToString();
         }
     }
-
     private async Task GetAllCourse()
     {
         var data = await _courseService.GetAllCourse();
@@ -81,14 +76,5 @@
         TotalCount = data.TotalCount;
     }
 
-    private void HandleGoDetail(int courseId)
-    {
-        _navigationManager.NavigateTo("courseDetail/" + courseId);
-    }
-
-    private void HandleGoCheckout(int courseId)
-    {
-        _navigationManager.NavigateTo("courseCheckout/" + courseId);
-    }
 
 }
